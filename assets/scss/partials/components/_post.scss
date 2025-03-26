@@ -76,8 +76,11 @@
     &-article {
       font-family: "Georgia", serif;
       margin: 0 auto;
-      padding: 5%;
       line-height: 1.8;
+
+      @include desktop {
+        padding: 5%;
+      }
 
       h1, h2, h3, h4, h5, h6 {
         font-family: "Helvetica", serif;
