@@ -15,12 +15,18 @@
 {{- with .Params.locale }}<meta property="og:locale" content="{{ . }}" />{{ end }}
 {{- with .Site.Params.title }}<meta property="og:site_name" content="{{ . }}" />{{ end }}
 
-{{- with .Params.images }}
-  {{- range . }}
+{{- if .Params.images }}
+  {{- range .Params.images }}
     {{- if (strings.HasPrefix . "http") }}
       <meta property="og:image" content="{{ . }}" />
     {{- else }}
       <meta property="og:image" content="{{ . | absURL }}" />
     {{- end }}
+  {{- end }}
+{{- else if .Params.thumbnail }}
+  {{- if (strings.HasPrefix .Params.thumbnail "http") }}
+    <meta property="og:image" content="{{ .Params.thumbnail }}" />
+  {{- else }}
+    <meta property="og:image" content="{{ .Params.thumbnail | absURL }}" />
   {{- end }}
 {{- end }}
